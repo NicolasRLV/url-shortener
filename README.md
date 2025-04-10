@@ -18,8 +18,6 @@ Create a URL shortening service that takes a long URL, such as `https://www.this
 5. Provide detailed instructions on how to run the application in a `README.md` file.
 6. Cover all functionality with tests.
 
-*Assignment provided by Sheilah, Atarim*
-
 ## Requirements
 - PHP 8.3.15
 - Laravel 5.14.2
@@ -28,7 +26,7 @@ Create a URL shortening service that takes a long URL, such as `https://www.this
 ## Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/NicolasRLV/url-shortener.git
    cd url-shortener
 
 2. Install dependencies:
@@ -78,9 +76,8 @@ response:
    Design: Built with Tailwind CSS for a modern, professional look, featuring distinct sections, styled inputs, and animated response boxes.
    Usage: Open the URL in a browser after starting the server, input URLs, and click the buttons to see results.
 
-## Running Tests
-   To verify the functionality, run the test suite:
-   ```bash
+# Running Tests
+## To verify the functionality, run the test suite:
    php artisan test
 
 ## Implementation Details
