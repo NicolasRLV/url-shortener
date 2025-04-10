@@ -1,66 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# URL Shortener Service
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Assignment Details
 
-## About Laravel
+### Objective
+The goal of this assignment is to implement a URL shortening service.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Brief
+Create a URL shortening service that takes a long URL, such as `https://www.thisisalongdomain.com/with/some/parameters?and=here_too`, and returns a shortened URL, like `http://short.est/GeAi9K`. The service should allow encoding a URL into a short URL and decoding a short URL back to its original URL.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Tasks
+1. Implement two API endpoints:
+   - `/encode`: Encodes a long URL into a shortened URL.
+   - `/decode`: Decodes a shortened URL back to its original URL.
+2. Both endpoints must return JSON responses.
+3. The encode/decode algorithm can be designed freely, as long as a URL can be encoded to a short URL and decoded back to the original URL.
+4. Short URLs do not need to be persisted; in-memory storage is sufficient.
+5. Provide detailed instructions on how to run the application in a `README.md` file.
+6. Cover all functionality with tests.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*Assignment provided by Sheilah, Atarim*
 
-## Learning Laravel
+## Requirements
+- PHP 8.3.15
+- Laravel 5.14.2
+- Composer 2.8.4
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd url-shortener
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Install dependencies:
+   ```bash
+   composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Copy the environment file and generate an application key:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
 
-## Laravel Sponsors
+4. Start the development server:
+   ```bash
+   php artisan serve
+   
+# API Endpoints
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Encode URL
+Endpoint: POST /api/encode
+Payload: 
+   {
+      "url": "https://www.example.com/very/long/url/with/parameters"
+   }
+response:
+   {
+      "short_url": "http://localhost:8000/XYZ123"
+   }
 
-### Premium Partners
+## Decode URL
+Endpoint: POST /api/decode
+Payload: 
+   {
+      "short_url": "http://localhost:8000/XYZ123"
+   }
+response:
+   {
+      "original_url": "https://www.example.com/very/long/url/with/parameters"
+   }
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Frontend Interface
 
-## Contributing
+## A polished web interface is provided at the root URL (/) for easy testing:
+   URL: http://localhost:8000/ (when running php artisan serve)
+   Features:
+      Encode: Enter a long URL to generate a shortened URL, displayed in a clean, clickable format.
+      Decode: Enter a short URL to retrieve the original URL, presented as a clickable link.
+   Design: Built with Tailwind CSS for a modern, professional look, featuring distinct sections, styled inputs, and animated response boxes.
+   Usage: Open the URL in a browser after starting the server, input URLs, and click the buttons to see results.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Running Tests
+   To verify the functionality, run the test suite:
+   ```bash
+   php artisan test
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Implementation Details
+   Storage: Uses Laravel’s file cache driver to store URL mappings in memory during a server session, fulfilling the in-memory requirement while persisting across requests for practical testing. Data is stored in storage/framework/cache/data and resets when the server stops.
+   Short Code Generation: Generates 6-character random codes using alphanumeric characters (a-z, A-Z, 0-9).
+   Validation: Includes input validation to ensure valid URLs are provided (required|url rule).
+   Response Format: All endpoints return JSON responses as specified.
+   Frontend: A Blade template (index.blade.php) with Tailwind CSS and JavaScript provides a user-friendly, professional interface to test the API endpoints directly in the browser.
+   Testing: Comprehensive tests cover:
+      Successful encoding and decoding.
+      Validation failure for invalid URLs (returns 422).
+      404 response for invalid short URLs.
